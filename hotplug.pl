@@ -3,9 +3,6 @@
 use strict;
 use warnings;
 
-use File::Basename qw(basename);
-
-my $mode = basename $0;
 my $class = $ARGV[0];
 my $name = $ARGV[1];
 
@@ -14,4 +11,8 @@ if ($class != 2) {
     exit 0
 }
 
-# TODO
+if ($0 =~ /attach/) {
+    # TODO: attach
+} elsif ($0 =~ /detach/) {
+    # TODO: detach
+}
