@@ -26,4 +26,13 @@ if ($label eq '') {
     exit 1
 }
 
-# TODO
+my $dev_file = "/dev/$name$part1";
+my $mount_point = "/media/$label";
+
+if ($mode eq 'attach') {
+    mkdir $mount_point || exit 1;
+    `mount $dev_file $mount_point` || exit 1;
+} elsif ($mode eq 'detach') {
+    `umount $mount_point` || exit 1;
+    rmdir $mount_point || exit 1;
+}
