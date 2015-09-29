@@ -14,4 +14,16 @@ if ($class != 2) {
     exit 0
 }
 
+`/sbin/disklabel -t $name` =~ /^(.+?)\s*\|.*t([d-z])=MSDOS/s || exit 1;
+
+my $label = lc $1;
+my $part1 = $2;
+
+$label =~ s/\s+/ /;
+$label =~ s/\s/_/;
+$label =~ y/a-z0-9_//cd;
+if ($label eq '') {
+    exit 1
+}
+
 # TODO
